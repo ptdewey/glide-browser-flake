@@ -16,7 +16,7 @@ Provides `nix run` and `nix build` commands, as well as a package that can be in
       system = "x86_64-linux";
       modules = [{
         environment.systemPackages = [
-          glide.packages.x86_64-linux.glide-browser
+          glide.packages.x86_64-linux.default
         ];
       }];
     };

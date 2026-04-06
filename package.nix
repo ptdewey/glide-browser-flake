@@ -50,20 +50,18 @@
 }:
 
 let
-  version = "0.1.60a";
+  version = "0.1.61a";
 
   sources = {
     x86_64-linux = {
       url = "https://github.com/glide-browser/glide/releases/download/${version}/glide.linux-x86_64.tar.xz";
-      hash = "sha256-3/qvFTURly9yTUzvGaaJfIGGr3rE4YKNoPwYe8rg1sI=";
-    };
-    aarch64-linux = {
-      url = "https://github.com/glide-browser/glide/releases/download/${version}/glide.linux-aarch64.tar.xz";
-      hash = "sha256-OgjKChqeuObVgEirWKFgT6NqaXlzy6J4pPkt6hV+daY=";
+      hash = "sha256-oxxaz+sQfwCbsfxYcHPM3aQ1BxP0CEz70BTlmsi/5R4=";
     };
   };
 
-  source = sources.${stdenv.hostPlatform.system} or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
+  source =
+    sources.${stdenv.hostPlatform.system}
+      or (throw "Unsupported system: ${stdenv.hostPlatform.system}");
 
   runtimeLibs = lib.makeLibraryPath [
     alsa-lib
@@ -167,7 +165,10 @@ stdenv.mkDerivation {
       exec = "glide --name glide-browser %U";
       icon = "glide-browser";
       comment = "Browse the web with Glide";
-      categories = [ "Network" "WebBrowser" ];
+      categories = [
+        "Network"
+        "WebBrowser"
+      ];
       mimeTypes = [
         "text/html"
         "text/xml"
